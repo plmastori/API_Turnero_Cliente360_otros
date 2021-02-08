@@ -19,5 +19,27 @@ namespace API_Pato_V2.Controllers
                 return t.ToList();
             }
         }
+
+        public int Post([FromBody] TurnoRequest value)
+        {
+            using (TURNEROEntities te = new TURNEROEntities())
+            {
+                var p = te.sp_api_NUEVO_CLIENTE_SMS(value.DNI, value.Telefono);
+                if (p == 1)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+                
+            }
+
+        }
+
+
     }
+
+
 }

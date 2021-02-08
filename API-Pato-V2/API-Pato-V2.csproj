@@ -186,6 +186,7 @@
     <Compile Include="Models\sp_api_TURNO_CLIENTE_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TurnoRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
