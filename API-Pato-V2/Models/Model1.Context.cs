@@ -49,5 +49,18 @@ namespace API_Pato_V2.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_api_NUEVO_CLIENTE_SMS", varDNIParameter, varTelefonoParameter);
         }
+    
+        public virtual ObjectResult<sp_api_CLIENTE_ENVIO_SMS_Result> sp_api_CLIENTE_ENVIO_SMS(Nullable<int> varDNI, Nullable<int> varMensaje)
+        {
+            var varDNIParameter = varDNI.HasValue ?
+                new ObjectParameter("varDNI", varDNI) :
+                new ObjectParameter("varDNI", typeof(int));
+    
+            var varMensajeParameter = varMensaje.HasValue ?
+                new ObjectParameter("varMensaje", varMensaje) :
+                new ObjectParameter("varMensaje", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_api_CLIENTE_ENVIO_SMS_Result>("sp_api_CLIENTE_ENVIO_SMS", varDNIParameter, varMensajeParameter);
+        }
     }
 }

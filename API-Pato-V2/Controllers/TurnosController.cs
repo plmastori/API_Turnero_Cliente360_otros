@@ -38,6 +38,16 @@ namespace API_Pato_V2.Controllers
 
         }
 
+        public List<sp_api_CLIENTE_ENVIO_SMS_Result> Get(int dni, int mensaje)
+        {
+            using (TURNEROEntities te = new TURNEROEntities())
+            {
+                var t = te.sp_api_CLIENTE_ENVIO_SMS(dni, mensaje);
+                return t.ToList();
+            }
+        }
+
+
 
     }
 
