@@ -65,7 +65,18 @@ namespace API_Pato_V2.Controllers
         //--ADD - 4. Interfaz de envío de SMS
 
         //++ADD - 5. Interfaz de confirmación de envío de SMS
+      /*  public List<sp_api_ESTADO_ENVIO_SMS_Result> Get(int dni, int mensaje)
+        {
+            using (TURNEROEntities te = new TURNEROEntities())
+            {
+                var r = te.sp_api_ESTADO_ENVIO_SMS(dni, mensaje);
+                Put(dni);
+                return r.ToList();
 
+
+            }
+
+        }*/
 
         //--ADD - 5. Interfaz de confirmación de envío de SMS
 
