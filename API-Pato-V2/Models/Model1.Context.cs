@@ -64,22 +64,13 @@ namespace API_Pato_V2.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_api_CLIENTE_ENVIO_SMS_Result>("sp_api_CLIENTE_ENVIO_SMS", varDNIParameter, varMensajeParameter);
         }
     
-        public virtual ObjectResult<string> sp_api_ESTADO_ENVIO_SMS(Nullable<int> varDNI)
+        public virtual ObjectResult<sp_api_ESTADO_ENVIO_SMS_Result> sp_api_ESTADO_ENVIO_SMS(Nullable<int> varDNI)
         {
             var varDNIParameter = varDNI.HasValue ?
                 new ObjectParameter("varDNI", varDNI) :
                 new ObjectParameter("varDNI", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_api_ESTADO_ENVIO_SMS", varDNIParameter);
-        }
-    
-        public virtual ObjectResult<string> sp_api_ESTADO_ENVIO_SMS1(Nullable<int> varDNI)
-        {
-            var varDNIParameter = varDNI.HasValue ?
-                new ObjectParameter("varDNI", varDNI) :
-                new ObjectParameter("varDNI", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_api_ESTADO_ENVIO_SMS1", varDNIParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_api_ESTADO_ENVIO_SMS_Result>("sp_api_ESTADO_ENVIO_SMS", varDNIParameter);
         }
     }
 }

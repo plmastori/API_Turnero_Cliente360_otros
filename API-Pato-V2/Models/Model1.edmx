@@ -47,10 +47,7 @@
             <Parameter Name="varDNI" Mode="In" Type="Int32" />
             <Parameter Name="varMensaje" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_api_ESTADO_ENVIO_SMS" ReturnType="Collection(String)">
-          <Parameter Name="varDNI" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_api_ESTADO_ENVIO_SMS1" ReturnType="Collection(String)">
+          <FunctionImport Name="sp_api_ESTADO_ENVIO_SMS" ReturnType="Collection(TURNEROModel.sp_api_ESTADO_ENVIO_SMS_Result)">
           <Parameter Name="varDNI" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="CLIENTE_ENVIO_SMS" EntityType="TURNEROModel.CLIENTE_ENVIO_SMS" />
@@ -73,6 +70,7 @@
           <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <ComplexType Name="sp_api_ESTADO_ENVIO_SMS_Result" />
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -97,7 +95,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_api_ESTADO_ENVIO_SMS1" FunctionName="TURNEROModel.Store.sp_api_ESTADO_ENVIO_SMS" />
           <EntitySetMapping Name="CLIENTE_ENVIO_SMS">
             <EntityTypeMapping TypeName="TURNEROModel.CLIENTE_ENVIO_SMS">
               <MappingFragment StoreEntitySet="CLIENTE_ENVIO_SMS">
@@ -108,6 +105,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_api_ESTADO_ENVIO_SMS" FunctionName="TURNEROModel.Store.sp_api_ESTADO_ENVIO_SMS" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TURNEROModel.sp_api_ESTADO_ENVIO_SMS_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

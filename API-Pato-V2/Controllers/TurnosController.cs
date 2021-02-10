@@ -11,14 +11,14 @@ namespace API_Pato_V2.Controllers
     public class TurnosController : ApiController
     {
         //++ADD - 1. Interfaz de información de Turnos
-        public List<sp_api_TURNO_CLIENTE_Result> Get(int dni)
+      /*  public List<sp_api_TURNO_CLIENTE_Result> Get(int dni)
         {
             using(TURNEROEntities te = new TURNEROEntities())
             {
                 var t = te.sp_api_TURNO_CLIENTE(dni);
                 return t.ToList();
             }
-        }
+        }*/
         //--ADD - 1. Interfaz de información de Turnos
 
         //++ADD - 3. Interfaz de nuevo cliente / actualizar cliente
@@ -65,19 +65,16 @@ namespace API_Pato_V2.Controllers
         //--ADD - 4. Interfaz de envío de SMS
 
         //++ADD - 5. Interfaz de confirmación de envío de SMS
-      /*  public List<sp_api_ESTADO_ENVIO_SMS_Result> Get(int dni, int mensaje)
+        public string Get(int dni)
         {
             using (TURNEROEntities te = new TURNEROEntities())
             {
-                var r = te.sp_api_ESTADO_ENVIO_SMS(dni, mensaje);
-                Put(dni);
-                return r.ToList();
-
+                var a = te.sp_api_ESTADO_ENVIO_SMS(dni);
+                //return a.get
 
             }
 
-        }*/
-
+        }
         //--ADD - 5. Interfaz de confirmación de envío de SMS
 
     }
