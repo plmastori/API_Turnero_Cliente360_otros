@@ -4,10 +4,22 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TURNEROModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TURNEROModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLIENTE_ENVIO_SMS">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" />
+        </EntityType>
         <Function Name="sp_api_CLIENTE_ENVIO_SMS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="varDNI" Type="int" Mode="In" />
           <Parameter Name="varMensaje" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_api_ESTADO_ENVIO_SMS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="varDNI" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_api_NUEVO_CLIENTE_SMS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="varDNI" Type="int" Mode="In" />
@@ -16,7 +28,9 @@
         <Function Name="sp_api_TURNO_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="varDNI" Type="int" Mode="In" />
         </Function>
-        <EntityContainer Name="TURNEROModelStoreContainer" />
+        <EntityContainer Name="TURNEROModelStoreContainer">
+          <EntitySet Name="CLIENTE_ENVIO_SMS" EntityType="Self.CLIENTE_ENVIO_SMS" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -33,6 +47,10 @@
             <Parameter Name="varDNI" Mode="In" Type="Int32" />
             <Parameter Name="varMensaje" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="CLIENTE_ENVIO_SMS" EntityType="TURNEROModel.CLIENTE_ENVIO_SMS" />
+          <FunctionImport Name="sp_api_ESTADO_ENVIO_SMS" ReturnType="Collection(String)">
+            <Parameter Name="varDNI" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_api_TURNO_CLIENTE_Result">
           <Property Type="Int32" Name="Tiene_Turno" Nullable="false" />
@@ -43,6 +61,15 @@
           <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Mensaje" Nullable="true" MaxLength="300" />
         </ComplexType>
+        <EntityType Name="CLIENTE_ENVIO_SMS">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -67,6 +94,17 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="CLIENTE_ENVIO_SMS">
+            <EntityTypeMapping TypeName="TURNEROModel.CLIENTE_ENVIO_SMS">
+              <MappingFragment StoreEntitySet="CLIENTE_ENVIO_SMS">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_api_ESTADO_ENVIO_SMS" FunctionName="TURNEROModel.Store.sp_api_ESTADO_ENVIO_SMS" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

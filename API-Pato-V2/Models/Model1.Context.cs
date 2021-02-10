@@ -27,6 +27,7 @@ namespace API_Pato_V2.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CLIENTE_ENVIO_SMS> CLIENTE_ENVIO_SMS { get; set; }
     
         public virtual ObjectResult<sp_api_TURNO_CLIENTE_Result> sp_api_TURNO_CLIENTE(Nullable<int> varDNI)
         {
@@ -61,6 +62,15 @@ namespace API_Pato_V2.Models
                 new ObjectParameter("varMensaje", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_api_CLIENTE_ENVIO_SMS_Result>("sp_api_CLIENTE_ENVIO_SMS", varDNIParameter, varMensajeParameter);
+        }
+    
+        public virtual ObjectResult<string> sp_api_ESTADO_ENVIO_SMS(Nullable<int> varDNI)
+        {
+            var varDNIParameter = varDNI.HasValue ?
+                new ObjectParameter("varDNI", varDNI) :
+                new ObjectParameter("varDNI", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_api_ESTADO_ENVIO_SMS", varDNIParameter);
         }
     }
 }

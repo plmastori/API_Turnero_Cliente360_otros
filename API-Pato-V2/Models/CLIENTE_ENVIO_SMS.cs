@@ -10,10 +10,13 @@
 namespace API_Pato_V2.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_api_CLIENTE_ENVIO_SMS_Result
+    public partial class CLIENTE_ENVIO_SMS
     {
+        public int DNI { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
         public string Telefono { get; set; }
-        public string Mensaje { get; set; }
+        public string Estado { get; set; }
     }
 }
