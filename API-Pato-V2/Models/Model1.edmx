@@ -47,13 +47,13 @@
             <Parameter Name="varDNI" Mode="In" Type="Int32" />
             <Parameter Name="varMensaje" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="CLIENTE_ENVIO_SMS" EntityType="TURNEROModel.CLIENTE_ENVIO_SMS" />
           <FunctionImport Name="sp_api_ESTADO_ENVIO_SMS" ReturnType="Collection(String)">
           <Parameter Name="varDNI" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_api_ESTADO_ENVIO_SMS1" ReturnType="Collection(String)">
-            <Parameter Name="varDNI" Mode="In" Type="Int32" />
+          <Parameter Name="varDNI" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="CLIENTE_ENVIO_SMS" EntityType="TURNEROModel.CLIENTE_ENVIO_SMS" />
         </EntityContainer>
         <ComplexType Name="sp_api_TURNO_CLIENTE_Result">
           <Property Type="Int32" Name="Tiene_Turno" Nullable="false" />
@@ -97,6 +97,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_api_ESTADO_ENVIO_SMS1" FunctionName="TURNEROModel.Store.sp_api_ESTADO_ENVIO_SMS" />
           <EntitySetMapping Name="CLIENTE_ENVIO_SMS">
             <EntityTypeMapping TypeName="TURNEROModel.CLIENTE_ENVIO_SMS">
               <MappingFragment StoreEntitySet="CLIENTE_ENVIO_SMS">
@@ -107,7 +108,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_api_ESTADO_ENVIO_SMS1" FunctionName="TURNEROModel.Store.sp_api_ESTADO_ENVIO_SMS" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
