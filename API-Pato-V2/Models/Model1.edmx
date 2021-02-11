@@ -56,6 +56,7 @@
           <Property Type="Int32" Name="Tiene_Turno" Nullable="false" />
           <Property Type="String" Name="Categoria" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Numero_Telefono" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Hora" Nullable="false" MaxLength="8" />
         </ComplexType>
         <ComplexType Name="sp_api_CLIENTE_ENVIO_SMS_Result">
           <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />
@@ -70,7 +71,9 @@
           <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <ComplexType Name="sp_api_ESTADO_ENVIO_SMS_Result" />
+        <ComplexType Name="sp_api_ESTADO_ENVIO_SMS_Result" >
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

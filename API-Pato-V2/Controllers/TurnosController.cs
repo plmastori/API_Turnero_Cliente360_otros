@@ -1,4 +1,5 @@
 ﻿using API_Pato_V2.Models;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,14 @@ namespace API_Pato_V2.Controllers
     public class TurnosController : ApiController
     {
         //++ADD - 1. Interfaz de información de Turnos
-      /*  public List<sp_api_TURNO_CLIENTE_Result> Get(int dni)
+        public List<sp_api_TURNO_CLIENTE_Result> Get(int dni)
         {
             using(TURNEROEntities te = new TURNEROEntities())
             {
                 var t = te.sp_api_TURNO_CLIENTE(dni);
                 return t.ToList();
             }
-        }*/
+        }
         //--ADD - 1. Interfaz de información de Turnos
 
         //++ADD - 3. Interfaz de nuevo cliente / actualizar cliente
@@ -40,18 +41,32 @@ namespace API_Pato_V2.Controllers
 
         }
         //++ADD - 4. Interfaz de envío de SMS
-        public List<sp_api_CLIENTE_ENVIO_SMS_Result> Get(int dni, int mensaje)
+        public int Get(int dni, int mensaje)
         {
             using (TURNEROEntities te = new TURNEROEntities())
             {
                 var t = te.sp_api_CLIENTE_ENVIO_SMS(dni, mensaje);
+                var p = t.ToList();
+                var Telefono = p[0].Telefono;
+                var Mensaje = p[0].Mensaje;
+                sendsms(Telefono, Mensaje);
+
                 Put(dni);
-                return t.ToList();
+                return 1;
 
                
             }
                        
         }
+
+        private void sendsms(string telefono, string mensaje)
+        {
+            var aux = new RestClient("http://servicio.smsmasivos.com.ar");
+            var request = new RestRequest("enviar_sms.asp?api=1&usuario=99248&clave=99248&TOS=" + telefono + "&texto=" + mensaje, Method.GET);
+            var result = aux.Execute<string>(request).Data;
+
+        }
+
         public void Put(int dni)
         {
             using (TURNEROEntities te = new TURNEROEntities())
@@ -65,12 +80,14 @@ namespace API_Pato_V2.Controllers
         //--ADD - 4. Interfaz de envío de SMS
 
         //++ADD - 5. Interfaz de confirmación de envío de SMS
-        public string Get(int dni)
+       [HttpGet]
+       [Route("api/TurnoEstado/{dni}")]
+        public List<sp_api_ESTADO_ENVIO_SMS_Result> GetEstado(int dni)
         {
             using (TURNEROEntities te = new TURNEROEntities())
             {
                 var a = te.sp_api_ESTADO_ENVIO_SMS(dni);
-                //return a.get
+                return a.ToList();
 
             }
 

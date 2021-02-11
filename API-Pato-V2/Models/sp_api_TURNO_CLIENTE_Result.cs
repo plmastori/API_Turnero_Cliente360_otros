@@ -16,5 +16,6 @@ namespace API_Pato_V2.Models
         public int Tiene_Turno { get; set; }
         public string Categoria { get; set; }
         public string Numero_Telefono { get; set; }
+        public string Hora { get; set; }
     }
 }
