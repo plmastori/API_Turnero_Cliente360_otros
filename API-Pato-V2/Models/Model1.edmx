@@ -57,6 +57,7 @@
           <Property Type="String" Name="Categoria" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Numero_Telefono" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="Hora" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="sp_api_CLIENTE_ENVIO_SMS_Result">
           <Property Type="String" Name="Telefono" Nullable="true" MaxLength="50" />

@@ -17,5 +17,6 @@ namespace API_Pato_V2.Models
         public string Categoria { get; set; }
         public string Numero_Telefono { get; set; }
         public string Hora { get; set; }
+        public string Nombre { get; set; }
     }
 }
