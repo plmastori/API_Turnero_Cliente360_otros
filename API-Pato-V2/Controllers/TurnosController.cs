@@ -41,11 +41,11 @@ namespace API_Pato_V2.Controllers
 
         }
         //++ADD - 4. Interfaz de envío de SMS
-        public int Get(int dni, int mensaje)
+        public int Get(int dni, int mensaje, string box)
         {
             using (TURNEROEntities te = new TURNEROEntities())
             {
-                var t = te.sp_api_CLIENTE_ENVIO_SMS(dni, mensaje);
+                var t = te.sp_api_CLIENTE_ENVIO_SMS(dni, mensaje, box);
                 var p = t.ToList();
                 var Telefono = p[0].Telefono;
                 var Mensaje = p[0].Mensaje;

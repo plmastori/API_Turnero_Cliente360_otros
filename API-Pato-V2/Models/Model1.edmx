@@ -17,6 +17,7 @@
         <Function Name="sp_api_CLIENTE_ENVIO_SMS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="varDNI" Type="int" Mode="In" />
           <Parameter Name="varMensaje" Type="int" Mode="In" />
+          <Parameter Name="varBox" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_api_ESTADO_ENVIO_SMS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="varDNI" Type="int" Mode="In" />
@@ -46,6 +47,7 @@
           <FunctionImport Name="sp_api_CLIENTE_ENVIO_SMS" ReturnType="Collection(TURNEROModel.sp_api_CLIENTE_ENVIO_SMS_Result)">
             <Parameter Name="varDNI" Mode="In" Type="Int32" />
             <Parameter Name="varMensaje" Mode="In" Type="Int32" />
+            <Parameter Name="varBox" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_api_ESTADO_ENVIO_SMS" ReturnType="Collection(TURNEROModel.sp_api_ESTADO_ENVIO_SMS_Result)">
           <Parameter Name="varDNI" Mode="In" Type="Int32" />
