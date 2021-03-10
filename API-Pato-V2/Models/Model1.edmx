@@ -29,6 +29,9 @@
         <Function Name="sp_api_TURNO_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="varDNI" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_api_VISTA_360_CLIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="varDNI" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="TURNEROModelStoreContainer">
           <EntitySet Name="CLIENTE_ENVIO_SMS" EntityType="Self.CLIENTE_ENVIO_SMS" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -53,6 +56,9 @@
           <Parameter Name="varDNI" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="CLIENTE_ENVIO_SMS" EntityType="TURNEROModel.CLIENTE_ENVIO_SMS" />
+          <FunctionImport Name="sp_api_VISTA_360_CLIENTE" ReturnType="Collection(TURNEROModel.sp_api_VISTA_360_CLIENTE_Result)">
+            <Parameter Name="varDNI" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_api_TURNO_CLIENTE_Result">
           <Property Type="Int32" Name="Tiene_Turno" Nullable="false" />
@@ -76,6 +82,14 @@
         </EntityType>
         <ComplexType Name="sp_api_ESTADO_ENVIO_SMS_Result" >
           <Property Type="String" Name="Estado" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_api_VISTA_360_CLIENTE_Result">
+          <Property Type="String" Name="Nro_Documento" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Subsegmento" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="Consumo_Anual" Nullable="true" Precision="32" Scale="16" />
+          <Property Type="Int32" Name="Cantidad_PV" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha_Ultima_Compra" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Modo_Entrega_Preferida" Nullable="true" MaxLength="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -114,6 +128,18 @@
           <FunctionImportMapping FunctionImportName="sp_api_ESTADO_ENVIO_SMS" FunctionName="TURNEROModel.Store.sp_api_ESTADO_ENVIO_SMS" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="TURNEROModel.sp_api_ESTADO_ENVIO_SMS_Result" />
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_api_VISTA_360_CLIENTE" FunctionName="TURNEROModel.Store.sp_api_VISTA_360_CLIENTE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TURNEROModel.sp_api_VISTA_360_CLIENTE_Result">
+                <ScalarProperty Name="Nro_Documento" ColumnName="Nro_Documento" />
+                <ScalarProperty Name="Subsegmento" ColumnName="Subsegmento" />
+                <ScalarProperty Name="Consumo_Anual" ColumnName="Consumo_Anual" />
+                <ScalarProperty Name="Cantidad_PV" ColumnName="Cantidad_PV" />
+                <ScalarProperty Name="Fecha_Ultima_Compra" ColumnName="Fecha_Ultima_Compra" />
+                <ScalarProperty Name="Modo_Entrega_Preferida" ColumnName="Modo_Entrega_Preferida" />
+              </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
         </EntityContainerMapping>

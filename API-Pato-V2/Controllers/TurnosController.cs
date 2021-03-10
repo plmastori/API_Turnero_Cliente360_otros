@@ -94,7 +94,26 @@ namespace API_Pato_V2.Controllers
         }
         //--ADD - 5. Interfaz de confirmación de envío de SMS
 
+        //++ADD - 6. Interfaz de información del Cliente
+        [HttpGet]
+        [Route("api/Cliente/{dni}")]
+        public List<sp_api_VISTA_360_CLIENTE_Result> GetCliente(string dni)
+        {
+            using (TURNEROEntities te = new TURNEROEntities())
+            {
+                var m = te.sp_api_VISTA_360_CLIENTE(dni);
+                return m.ToList();
+
+            }
+
+        }
+        //--ADD - 6. Interfaz de información del Cliente
+
     }
 
-
 }
+
+   
+
+
+

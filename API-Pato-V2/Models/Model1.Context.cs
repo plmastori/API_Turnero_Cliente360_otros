@@ -76,5 +76,14 @@ namespace API_Pato_V2.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_api_ESTADO_ENVIO_SMS_Result>("sp_api_ESTADO_ENVIO_SMS", varDNIParameter);
         }
+    
+        public virtual ObjectResult<sp_api_VISTA_360_CLIENTE_Result> sp_api_VISTA_360_CLIENTE(string varDNI)
+        {
+            var varDNIParameter = varDNI != null ?
+                new ObjectParameter("varDNI", varDNI) :
+                new ObjectParameter("varDNI", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_api_VISTA_360_CLIENTE_Result>("sp_api_VISTA_360_CLIENTE", varDNIParameter);
+        }
     }
 }
