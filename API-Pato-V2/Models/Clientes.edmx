@@ -25,7 +25,7 @@
           <Property Type="Decimal" Name="Consumo_Anual" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Int32" Name="Cantidad_PV" Nullable="true" />
           <Property Type="DateTime" Name="Fecha_Ultima_Compra" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Modo_Entrega_Preferida" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Modo_Entrega_Preferido" Nullable="true" MaxLength="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -41,7 +41,7 @@
                 <ScalarProperty Name="Consumo_Anual" ColumnName="Consumo_Anual" />
                 <ScalarProperty Name="Cantidad_PV" ColumnName="Cantidad_PV" />
                 <ScalarProperty Name="Fecha_Ultima_Compra" ColumnName="Fecha_Ultima_Compra" />
-                <ScalarProperty Name="Modo_Entrega_Preferida" ColumnName="Modo_Entrega_Preferida" />
+                <ScalarProperty Name="Modo_Entrega_Preferido" ColumnName="Modo_Entrega_Preferida" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
