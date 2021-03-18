@@ -18,6 +18,6 @@ namespace API_Pato_V2.Models
         public Nullable<decimal> Consumo_Anual { get; set; }
         public Nullable<int> Cantidad_PV { get; set; }
         public Nullable<System.DateTime> Fecha_Ultima_Compra { get; set; }
-        public string Modo_Entrega_Preferida { get; set; }
+        public string Modo_Entrega_Preferido { get; set; }
     }
 }
